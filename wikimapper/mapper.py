@@ -24,14 +24,7 @@ class WikiMapper:
                            it, else return `None`.
 
         """
-
-        c = self.conn.execute("SELECT wikidata_id FROM mapping WHERE wikipedia_title=?", (page_title,))
-        result = c.fetchone()
-
-        if result is not None and result[0] is not None:
-            return result[0]
-        else:
-            return None
+        pass
 
     def url_to_id(self, wiki_url: str) -> Optional[str]:
         """Given an URL to a Wikipedia page, returns the corresponding Wikidata ID.
@@ -47,9 +40,7 @@ class WikiMapper:
                            it, else return `None`.
 
         """
-
-        title = wiki_url.rsplit("/", 1)[-1]
-        return self.title_to_id(title)
+        pass
 
     def id_to_titles(self, wikidata_id: str) -> List[str]:
         """Given a Wikidata ID, return a list of corresponding pages that are linked to it.
@@ -63,13 +54,7 @@ class WikiMapper:
             List[str]: A list of Wikipedia pages that are linked to this Wikidata ID.
 
         """
-
-        c = self.conn.execute(
-            "SELECT DISTINCT wikipedia_title FROM mapping WHERE wikidata_id =?", (wikidata_id,)
-        )
-        results = c.fetchall()
-
-        return [e[0] for e in results]
+        pass
 
     def wikipedia_id_to_id(self, wikipedia_id: int) -> Optional[str]:
         """Given a Wikipedia ID (in other words Page ID), returns the corresponding Wikidata ID.
@@ -84,16 +69,7 @@ class WikiMapper:
             Optional[str]: If a mapping found for `wikipedia_id`, then return
                            it, else return `None`.
         """
-
-        c = self.conn.execute(
-            "SELECT wikidata_id FROM mapping WHERE wikipedia_id=?", (wikipedia_id,)
-        )
-        result = c.fetchone()
-
-        if result is not None and result[0] is not None:
-            return result[0]
-        else:
-            return None
+        pass
 
     def id_to_wikipedia_ids(self, wikidata_id: str) -> List[int]:
         """Given a Wikidata ID, returns the corresponding list of Wikipedia IDs (or Page IDs).
@@ -106,14 +82,7 @@ class WikiMapper:
         Returns:
             List[int]: A list of Wikipedia IDs linked to the given Wikidata ID.
         """
-
-        # no need for `DISTINCT` as `wikipedia_id` is a PRIMARY KEY, thus we have no duplicates there
-        c = self.conn.execute(
-            "SELECT wikipedia_id FROM mapping WHERE wikidata_id=?", (wikidata_id,)
-        )
-        results = c.fetchall()
-
-        return [e[0] for e in results]
+        pass
 
     def wikipedia_id_to_title(self, wikipedia_id: int) -> Optional[str]:
         """Given a Wikipedia ID (in other words Page ID), returns the corresponding page title.
@@ -125,16 +94,7 @@ class WikiMapper:
             Optional[str]: If a mapping found for `wikipedia_id`, then return
                            it, else return `None`.
         """
-
-        c = self.conn.execute(
-            "SELECT wikipedia_title FROM mapping WHERE wikipedia_id=?", (wikipedia_id,)
-        )
-        result = c.fetchone()
-
-        if result is not None and result[0] is not None:
-            return result[0]
-        else:
-            return None
+        pass
 
     def title_to_wikipedia_id(self, page_title: str) -> Optional[int]:
         """Given a Wikipedia page title, returns the corresponding Wikipedia id.
@@ -146,14 +106,4 @@ class WikiMapper:
             Optional[str]: If a mapping found for `page_title`, then return
                            it, else return `None`.
         """
-
-        # no need for `DISTINCT` as `wikipedia_id` is a PRIMARY KEY, thus we have no duplicates there
-        c = self.conn.execute(
-            "SELECT wikipedia_id FROM mapping WHERE wikipedia_title=?", (page_title,)
-        )
-        result = c.fetchone()
-
-        if result is not None and result[0] is not None:
-            return result[0]
-        else:
-            return None
+        pass

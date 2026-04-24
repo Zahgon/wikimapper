@@ -30,10 +30,7 @@ def _values_sanity_check(values):
     """
     Ensures that values from the INSERT statement meet basic checks.
     """
-    assert values
-    assert values[0] == "("
-    # Assertions have not been raised
-    return True
+    pass
 
 
 def _parse_values(values):

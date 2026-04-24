@@ -9,8 +9,7 @@ _logger = logging.getLogger(__name__)
 
 
 def _report_hook(count: int, block_size: int, total_size: int):
-    percent = min(int(count * block_size * 100 / total_size), 100)
-    sys.stdout.write("\r%2d%%" % percent)
+    pass
 
 
 def _download_file(url: str, target: str, overwrite: bool):
